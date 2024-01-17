@@ -1,15 +1,14 @@
 version: "3.8"
 
 services:
-  mysql8:
-    image: mysql:8
-    container_name: mysql-8
-    volumes:
-      - mysql-data:/var/lib/mysql
+  sql-server:
+    image: mcr.microsoft.com/azure-sql-edge:latest
     environment:
-      MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABASE: demo
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: 'sqlserverPwd123'
     ports:
-      - "3306:3306"
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
 volumes:
-  mysql-data:
+  mssql-data:
